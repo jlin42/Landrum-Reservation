@@ -1,0 +1,14 @@
+.calendar-app {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+  }
+  
+  .calendar {
+    margin-right: 20px;
+  }
+  
+  .timeslot {
+    flex: 1;
+  }
