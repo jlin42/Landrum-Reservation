@@ -1,24 +1,20 @@
-import {useState} from 'react';
-import Calendar from 'react-calendar'; 
-import 'react-calendar/dist/Calendar.css'
-import './App.css';
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./pages/Layout.js";
+import Calendar from "./components/Calendar";
+import Booking from "./pages/Bookings.js";
 
 function App() {
- const [date, setDate] = useState(new Date())
-
-
-
-return (
- <div className="app">
-   <h1 className="header">React Calendar</h1>
-   <div className="calendar-container">
-     <Calendar onChange={setDate} value={date}/>
-   </div>
-   <div className="text-center">
-      Selected date: {date.toDateString()}
-   </div>
- </div>
-  )
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout/>}>
+          <Route path="booking" element={<Booking/>} />
+          <Route path="login" element={null} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 
 }
 
