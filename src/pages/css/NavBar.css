@@ -1,0 +1,46 @@
+.NavBar-container {
+    background-color:#115740;
+    display:flex;
+    flex-direction: row;
+    gap: 20px;
+    margin-top: 0px;
+    padding: 10px 20px
+}
+
+@media (min-width: 768px) {
+    .NavBar-container {
+        padding: 10px 400px; /* Increased padding on left and right */
+    }
+}
+
+.profile-icon {
+    color: #D0D3D4;
+}
+
+.login-bar {
+    display:flex;
+    flex-direction: row;
+    margin-left: auto;
+    align-items: center;
+}
+
+.login-bar:hover {
+    cursor: pointer;
+}
+
+.login-bar:hover a{
+    color: #F0B323;
+}
+
+.login-bar a {
+    margin-left: 5px; 
+}
+
+.Link {
+    text-decoration: none;
+    color: #B9975B;
+}
+
+.Link:hover {
+    color:#F0B323
+}

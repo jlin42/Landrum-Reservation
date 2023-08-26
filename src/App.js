@@ -1,18 +1,20 @@
-import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "./pages/Layout.js";
-import Calendar from "./components/Calendar";
+import NavBar from './pages/NavBar.js'
 import Booking from "./pages/Bookings.js";
+import './App.css';
+
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout/>}>
-          <Route path="booking" element={<Booking/>} />
-          <Route path="login" element={null} />
-        </Route>
-      </Routes>
+      <div className="content-container">
+        <Routes>
+          <Route className="container" path="/" element={<NavBar/>}>
+            <Route path="booking" element={<Booking/>} />
+            <Route path="login" element={null} />
+          </Route>
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 
