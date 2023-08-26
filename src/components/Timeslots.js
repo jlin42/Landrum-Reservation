@@ -1,20 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
+import './css/Timeslots.css'
 
 const TimeSlot = ({ date, reservationTimes }) => {
-  console.log('Received date:', date);
-  console.log('Received reservationTimes:', reservationTimes);
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
+
+  const handleTimeSlotClick = (time) => {
+    setSelectedTimeSlot(time);
+  };
+
   return (
     <div className="timeslot">
-      <h2>Reservation Times for {date.toDateString()}</h2>
-      {reservationTimes.length === 0 ? (
-        <p>No reservation times available for this date.</p>
-      ) : (
-        <ul>
-          {reservationTimes.map((time, index) => (
-            <li key={index}>{time}</li>
-          ))}
-        </ul>
-      )}
+      <h2>Available times:</h2>
+      <div className="timeslot-grid">
+        {reservationTimes.map((time, index) => (
+          <button
+            key={index}
+            className={`${selectedTimeSlot === time ? 'selected' : ''} ${time !== '9:00 AM' ? 'available' : 'unavailable'}`}
+            onClick={() => handleTimeSlotClick(time)}>{time}
+          </button>
+        ))}
+      </div>
     </div>
   );
 };

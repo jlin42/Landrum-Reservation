@@ -1,14 +1,46 @@
 .calendar-app {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     padding: 20px;
-  }
-  
-  .calendar {
+}
+
+.calendar-title {
+    align-self: flex-start;
+}
+
+.booking-view {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.booking-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+@media (min-width: 768px) {
+    /* For devices with screen width >= 768px (you can adjust this breakpoint) */
+    .booking-container {
+      flex-direction: row; /* Revert to row layout on larger screens */
+    }
+    .timeslot {
+        margin-left: 20px;
+        max-width: calc(100% - 40px); 
+    }
+
+    
+}
+
+
+.calendar {
     margin-right: 20px;
-  }
+}
   
-  .timeslot {
+.timeslot {
     flex: 1;
-  }
+    max-width: calc(100% - 20px); 
+}
