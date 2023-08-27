@@ -1,0 +1,105 @@
+.login-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 100px;
+    color:#115740
+  }
+  
+  h1 {
+    margin-bottom: 20px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #B9975B;
+    border-radius: 4px;
+  }
+
+  input:focus {
+    border: 2px solid #F0B323;
+    outline: none;
+  }
+
+  .error-message {
+    color: red;
+    margin-top: 5px;
+    font-size: 14px;
+  }
+
+  .login {
+    margin-bottom: 10px;
+    background-color: #115740;
+    color: #F0B323;
+    border-color: #B9975B;
+    border-radius: 8px;
+    max-width: 33%;
+    padding: 4px;
+    font-size: 1em;
+  }
+
+  .google-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px 16px;
+    margin: 10px 0;
+    cursor: pointer;
+    background-color: white;
+    border: 1px solid #ccc;
+    font-weight: bold;
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .google-button:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .google-logo {
+    width: 24px; 
+    height: 24px;
+    margin-right: 10px;
+  }
+
+  .microsoft-button {
+    background-color: #ffffff;
+    color: #555;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    position: relative;
+  }
+  .microsoft-button:hover {
+    background-color: #F3F3F3;
+  }
+
+  .microsoft-logo {
+    width: 24px; 
+    height: 24px;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
