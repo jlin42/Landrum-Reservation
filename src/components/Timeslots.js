@@ -20,6 +20,7 @@ const TimeSlot = ({ date, reservationTimes }) => {
           </button>
         ))}
       </div>
+      <button className="reserve-button">Reserve</button>
     </div>
   );
 };

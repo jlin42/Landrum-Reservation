@@ -1,7 +1,7 @@
-.timeslot ul {
-    list-style: none;
-    padding: 0;
-  }
+    .timeslot {
+        display: flex;
+        flex-direction: column;
+    }
   
   .timeslot button {
     padding: 10px;
@@ -31,4 +31,9 @@
   
   .timeslot button.unavailable {
     background-color: red;
+  }
+
+  .reserve-button {
+    margin-top: auto;
+    max-width: 33%;
   }
