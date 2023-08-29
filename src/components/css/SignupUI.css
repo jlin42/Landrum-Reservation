@@ -1,0 +1,88 @@
+.signup-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 100px;
+    color: #115740;
+  }
+  
+  .title {
+    margin-bottom: 20px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #b9975b;
+    border-radius: 4px;
+  }
+  
+  input:focus {
+    border: 2px solid #f0b323;
+    outline: none;
+  }
+  
+  .error-message {
+    color: red;
+    margin-top: 5px;
+    font-size: 14px;
+  }
+  
+  .submit {
+    background-color: #115740;
+    color: #f0b323;
+    border-color: #b9975b;
+    border-radius: 8px;
+    max-width: 33%;
+    padding: 8px;
+    font-size: 1em;
+    cursor: pointer;
+  }
+  
+  .submit:hover {
+    background-color: #0d4431;
+  }
+  
+  .login-link {
+    margin-top: 10px;
+  }
+  
+  .login-link a {
+    color: #115740;
+    text-decoration: underline;
+  }
+
+  .password {
+    margin-bottom: 0;
+  }
+
+  .password-strength {
+    font-size: 12px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .weak {
+    color: red;
+  }
+  
+  .medium {
+    color: orange;
+  }
+  
+  .strong {
+    color: green;
+  }
