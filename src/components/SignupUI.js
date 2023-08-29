@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { initializeApp } from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, AuthErrorCodes, sendEmailVerification } from 'firebase/auth';
 import firebaseConfig from '../config/firebase-config';
-import './css/SignupUI.css'; // Create a separate CSS file for the SignupUI component
+import './css/SignupUI.css';
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -14,18 +14,36 @@ const SignupUI = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = async (e) => {
+  const [invalidEmail, setInvalidEmail] = useState(false);
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  const handleSignup = async (e) => {
     e.preventDefault();
+
+    if (!emailPattern.test(email)) {
+      setInvalidEmail(true);
+      return;
+    }
+
     if (password !== confirmPassword) {
       setErrorMessage("Passwords don't match");
       return;
     }
 
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      console.log('User registered successfully');
-    } catch (error) {
-      setErrorMessage(error.message);
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    console.log('User registered successfully');
+    // Send email verification
+    await sendEmailVerification(auth.currentUser);
+    console.log('Verification email sent');
+    window.location.href = '/login';
+    // Redirect to login or show a message
+} catch (error) {
+    if (error.code === AuthErrorCodes.EMAIL_EXISTS) {
+    setErrorMessage('Email address is already in use');
+    } else {
+    setErrorMessage('An error occurred. Please try again.');
+    }
     }
   };
 
@@ -69,10 +87,12 @@ const SignupUI = () => {
     return 'strong';
   };
 
+
+
   return (
     <div className="signup-container">
       <h1 className="title">Sign Up</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSignup}>
         <label htmlFor="email">Email</label>
         <input
             type="email"
