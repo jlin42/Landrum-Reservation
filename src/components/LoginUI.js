@@ -5,7 +5,8 @@ import { getAuth, signInWithPopup, onAuthStateChanged } from 'firebase/auth';
 import { GoogleAuthProvider, OAuthProvider, signInWithEmailAndPassword } from 'firebase/auth';
 import firebaseConfig from '../config/firebase-config';
 import './css/LoginUI.css';
-import { useUser } from '../context/UserContext'; // Import useUser
+import { useUser } from '../context/UserContext';
+import { setRememberMe, getRememberMe } from '../utils/LocalStorage'; // Import localStorage functions
 
 const app = initializeApp(firebaseConfig);
 
@@ -14,8 +15,8 @@ const auth = getAuth(app);
 const LoginUI = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
   const [errorMessage, setErrorMessage] = useState('');
+  const [rememberMe, setRememberMe] = useState(getRememberMe()); // Initialize from local storage
 
   const { setUser } = useUser(); // Use the user context
 
@@ -38,6 +39,11 @@ const LoginUI = () => {
       
       console.log('Email and password login successful', user);
       setErrorMessage(''); // Clear any previous error message
+
+      // Check if "Remember Me" is checked and set it in local storage
+      if (rememberMe) {
+        setRememberMe(email, password);
+      }
     } catch (error) {
       if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
         setErrorMessage('Invalid email or password'); // Set the error message
@@ -49,25 +55,11 @@ const LoginUI = () => {
   };
 
   const handleGoogleSignIn = async () => {
-    const provider = new GoogleAuthProvider();
-    try {
-      const result = await signInWithPopup(auth, provider);
-      const user = result.user; // Get the user object
-      
-      console.log('Google login successful', user);
-    } catch (error) {
-      console.error('Google sign-in error:', error.message);
-    }
+    // ...
   };
 
   const handleMicrosoftSignIn = async () => {
-    const provider = new OAuthProvider('microsoft.com'); // Create Microsoft auth provider instance
-    try {
-      await signInWithPopup(auth, provider); // Use signInWithPopup method
-      console.log('Microsoft login successful');
-    } catch (error) {
-      console.error('Microsoft sign-in error:', error.message);
-    }
+    // ...
   };
 
   const handleSubmit = (e) => {
@@ -100,6 +92,16 @@ const LoginUI = () => {
         />
         <button type="submit" className="login">Login</button>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
+        <label>
+          <input
+            type="checkbox"
+            id="rememberMe"
+            name="rememberMe"
+            checked={rememberMe}
+            onChange={() => setRememberMe(!rememberMe)}
+          />
+          Remember Me
+        </label>
         <button
           type="button"
           className="google-button"
