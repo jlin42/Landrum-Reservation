@@ -29,32 +29,32 @@ const ReactCalendar = () => {
   };
 
   const createDocumentsForNextWeek = async (dates) => {
-    const collectionRef = collection(db, 'bookings'); // Replace 'days' with your collection name
-  
+    const collectionRef = collection(db, 'bookings');
+    
     for (const date of dates) {
       const formattedDate = date.toISOString().split('T')[0];
-      const currentDate = new Date();
-      const currentHour = currentDate.getHours();
-
-      if (currentHour === 0){
-            try {
-                const docRef = doc(collectionRef, formattedDate);
-                const docData = {
-                    time: ["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM"],
-                    availability: true
-                    
-                };
-        
-                // Create the document
-                await setDoc(docRef, docData);
-        
-                console.log(`Document created for ${formattedDate}`);
-            } catch (error) {
-                console.error(`Error creating document for ${formattedDate}:`, error);
-            }
-            }
+    
+      try {
+        const docRef = doc(collectionRef, formattedDate);
+        const docData = {
+          date: formattedDate,
+          times: [
+            { time: "9:00 AM", availability: true },
+            { time: "10:00 AM", availability: false },
+            { time: "11:00 AM", availability: true },
+            { time: "12:00 PM", availability: true },
+          ],
         };
+    
+        // Create the document
+        await setDoc(docRef, docData);
+    
+        console.log(`Document created for ${formattedDate}`);
+      } catch (error) {
+        console.error(`Error creating document for ${formattedDate}:`, error);
       }
+    }
+  };
 
     const deleteOldBookings = async () => {
         const today = new Date();
